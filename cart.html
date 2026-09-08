@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cart | Sarita Sarees</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(128,70,40,0.25),
+                    transparent 35%
+                ),
+                #0e090b;
+
+            color: white;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            padding: 40px 7%;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 60px;
+        }
+
+
+        .logo {
+            color: #e8b96b;
+
+            font-size: 28px;
+
+            letter-spacing: 2px;
+
+            font-weight: bold;
+        }
+
+        .logo span {
+            display: block;
+
+            color: #888;
+
+            font-family: Arial;
+
+            font-size: 9px;
+
+            letter-spacing: 5px;
+        }
+
+
+        .back {
+            text-decoration: none;
+
+            color: #aaa;
+
+            font-family: Arial;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .back:hover {
+            color: #e4b46d;
+        }
+
+
+        /* TITLE */
+
+        .title {
+            margin-bottom: 40px;
+        }
+
+        .title small {
+            color: #dca45e;
+
+            font-family: Arial;
+
+            letter-spacing: 4px;
+
+            font-size: 10px;
+        }
+
+        .title h1 {
+            font-size: 55px;
+
+            font-weight: normal;
+
+            margin-top: 10px;
+        }
+
+
+        /* LAYOUT */
+
+        .cart-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 350px;
+
+            gap: 35px;
+
+            align-items: start;
+        }
+
+
+        /* ITEMS */
+
+        .cart-items {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+
+        .cart-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 22px;
+
+            padding: 18px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.04);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .cart-item:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                rgba(255,255,255,0.06);
+
+        }
+
+
+        .cart-item img {
+
+            width: 110px;
+
+            height: 135px;
+
+            object-fit: cover;
+
+            border-radius: 12px;
+        }
+
+
+        .item-info {
+
+            flex: 1;
+        }
+
+
+        .item-info h3 {
+
+            font-size: 21px;
+
+            font-weight: normal;
+
+            margin-bottom: 8px;
+        }
+
+
+        .item-info p {
+
+            color: #888;
+
+            font-family: Arial;
+
+            font-size: 12px;
+        }
+
+
+        .item-price {
+
+            color: #e4b46d;
+
+            font-family: Arial;
+
+            font-weight: bold;
+
+            margin-top: 15px;
+        }
+
+
+        /* QUANTITY */
+
+        .quantity {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-family: Arial;
+        }
+
+
+        .quantity button {
+
+            width: 30px;
+
+            height: 30px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.15);
+
+            background:
+                rgba(255,255,255,0.06);
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            transition: 0.2s;
+        }
+
+
+        .quantity button:hover {
+
+            background: #b67b42;
+
+        }
+
+
+        .remove {
+
+            border: none;
+
+            background: transparent;
+
+            color: #777;
+
+            cursor: pointer;
+
+            font-family: Arial;
+
+            font-size: 12px;
+
+            transition: 0.2s;
+        }
+
+
+        .remove:hover {
+
+            color: #e56c6c;
+
+        }
+
+
+        /* SUMMARY */
+
+        .summary {
+
+            position: sticky;
+
+            top: 30px;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1b1214,
+                    #100b0c
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            box-shadow:
+                0 30px 70px
+                rgba(0,0,0,0.4);
+        }
+
+
+        .summary h2 {
+
+            font-size: 26px;
+
+            font-weight: normal;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            font-family: Arial;
+
+            font-size: 14px;
+
+            color: #999;
+
+            margin-bottom: 17px;
+
+        }
+
+
+        .summary-row.total {
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            padding-top: 20px;
+
+            margin-top: 20px;
+
+            color: white;
+
+            font-size: 18px;
+        }
+
+
+        .total-price {
+
+            color: #e5b56e;
+
+            font-weight: bold;
+        }
+
+
+        .checkout {
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 17px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e0ae65,
+                    #a66b32
+                );
+
+            color: #160e0b;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-family: Arial;
+
+            transition: 0.3s;
+        }
+
+
+        .checkout:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(190,130,60,0.3);
+
+        }
+
+
+        /* EMPTY */
+
+        .empty {
+
+            text-align: center;
+
+            padding: 100px 20px;
+
+            color: #777;
+
+            font-family: Arial;
+        }
+
+
+        .empty-icon {
+
+            font-size: 50px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .shop-btn {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 13px 25px;
+
+            border-radius: 25px;
+
+            background: #b77b3f;
+
+            color: white;
+
+            text-decoration: none;
+
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width: 800px) {
+
+            body {
+
+                padding:
+                    25px 5%;
+
+            }
+
+
+            .cart-layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .title h1 {
+
+                font-size: 42px;
+
+            }
+
+
+            .cart-item {
+
+                align-items: flex-start;
+
+                flex-wrap: wrap;
+
+            }
+
+
+            .quantity {
+
+                margin-left: 132px;
+
+            }
+
+
+            .summary {
+
+                position: static;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="logo">
+
+        SARITA
+
+        <span>
+            SAREES
+        </span>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back"
+    >
+        ← Continue Shopping
+    </a>
+
+</div>
+
+
+
+<!-- TITLE -->
+
+<div class="title">
+
+    <small>
+        YOUR SELECTION
+    </small>
+
+    <h1>
+        Shopping Cart
+    </h1>
+
+</div>
+
+
+
+<!-- CART -->
+
+<div
+    class="cart-layout"
+    id="cartLayout"
+>
+
+    <div
+        class="cart-items"
+        id="cartItems"
+    ></div>
+
+
+    <div
+        class="summary"
+        id="summary"
+    >
+
+        <h2>
+            Order Summary
+        </h2>
+
+
+        <div class="summary-row">
+
+            <span>
+                Subtotal
+            </span>
+
+            <span id="subtotal">
+                ₹0
+            </span>
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>
+                Delivery fees
+            </span>
+
+            <span>
+                100
+            </span>
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>
+                Taxes
+            </span>
+
+            <span>
+                Included
+            </span>
+
+        </div>
+
+
+        <div class="summary-row total">
+
+            <span>
+                Total
+            </span>
+
+            <span
+                class="total-price"
+                id="total"
+            >
+                ₹0
+            </span>
+
+        </div>
+
+
+        <button
+            class="checkout"
+            onclick="checkout()"
+        >
+            Proceed to Checkout →
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("saritaCart")
+        ) || [];
+
+
+    const cartItems =
+        document.getElementById(
+            "cartItems"
+        );
+
+
+    function saveCart() {
+
+        localStorage.setItem(
+            "saritaCart",
+            JSON.stringify(cart)
+        );
+
+    }
+
+
+    function renderCart() {
+
+        cartItems.innerHTML = "";
+
+
+        if(cart.length === 0) {
+
+            document.getElementById(
+                "cartLayout"
+            ).innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        🛍
+                    </div>
+
+                    <h2>
+                        Your cart is empty
+                    </h2>
+
+                    <p>
+                        Discover something beautiful
+                        from our collection.
+                    </p>
+
+                    <a
+                        href="index.html"
+                        class="shop-btn"
+                    >
+                        Explore Sarees
+                    </a>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        cart.forEach(
+            (item, index) => {
+
+                const element =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                element.className =
+                    "cart-item";
+
+
+                element.innerHTML = `
+
+                    <img
+                        src="${item.image}"
+                        alt="${item.name}"
+                    >
+
+
+                    <div class="item-info">
+
+                        <h3>
+                            ${item.name}
+                        </h3>
+
+                        <p>
+                            Premium Collection
+                        </p>
+
+                        <div class="item-price">
+                            ₹${item.price.toLocaleString("en-IN")}
+                        </div>
+
+                    </div>
+
+
+                    <div class="quantity">
+
+                        <button
+                            onclick="changeQuantity(
+                                ${index},
+                                -1
+                            )"
+                        >
+                            −
+                        </button>
+
+                        <span>
+                            ${item.quantity}
+                        </span>
+
+                        <button
+                            onclick="changeQuantity(
+                                ${index},
+                                1
+                            )"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        class="remove"
+                        onclick="removeItem(${index})"
+                    >
+                        Remove
+                    </button>
+
+                `;
+
+
+                cartItems.appendChild(
+                    element
+                );
+
+            }
+        );
+
+
+        updateSummary();
+
+    }
+
+
+    function changeQuantity(
+        index,
+        amount
+    ) {
+
+        cart[index].quantity += amount;
+
+
+        if(cart[index].quantity <= 0) {
+
+            cart.splice(index, 1);
+
+        }
+
+
+        saveCart();
+
+        renderCart();
+
+    }
+
+
+    function removeItem(index) {
+
+        cart.splice(index, 1);
+
+        saveCart();
+
+        renderCart();
+
+    }
+
+
+    function updateSummary() {
+
+        const subtotal =
+            cart.reduce(
+                (total, item) =>
+                    total +
+                    item.price *
+                    item.quantity,
+                0
+            );
+
+
+        document.getElementById(
+            "subtotal"
+        ).textContent =
+            "₹" +
+            subtotal.toLocaleString("en-IN");
+
+
+        document.getElementById(
+            "total"
+        ).textContent =
+            "₹" +
+            subtotal.toLocaleString("en-IN");
+
+    }
+
+
+    function checkout() {
+
+        if(cart.length === 0) {
+
+            alert(
+                "Your cart is empty."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "Checkout system will be connected to the backend and payment gateway later."
+        );
+
+    }
+
+
+    renderCart();
+
+</script>
+<a href="index.html" class="home-link">
+    ← Back to Sarita Sarees
+</a>
+ <a
+            href="index.html"
+            class="home-link"
+        >
+            ← Back to Sarita Sarees
+        </a>
+
+</body>
+
+</html>

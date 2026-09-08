@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | Sarita Sarees</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            overflow: hidden;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(196, 137, 67, 0.22),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(112, 42, 55, 0.25),
+                    transparent 35%
+                ),
+
+                #0b0708;
+
+            color: white;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+        }
+
+
+        /* ===================================
+           BACKGROUND
+        =================================== */
+
+        .background-ring {
+
+            position: absolute;
+
+            width: 650px;
+
+            height: 650px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(220, 174, 102, 0.08);
+
+            transform:
+                rotateX(65deg)
+                rotateY(15deg);
+
+            animation:
+                ringRotate 15s linear infinite;
+
+        }
+
+
+        @keyframes ringRotate {
+
+            from {
+                transform:
+                    rotateX(65deg)
+                    rotateY(15deg)
+                    rotateZ(0deg);
+            }
+
+            to {
+                transform:
+                    rotateX(65deg)
+                    rotateY(15deg)
+                    rotateZ(360deg);
+            }
+
+        }
+
+
+        .light {
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+
+            opacity: 0.25;
+
+        }
+
+
+        .light.one {
+
+            background: #d09a52;
+
+            top: -100px;
+
+            left: -100px;
+
+        }
+
+
+        .light.two {
+
+            background: #7e3d4f;
+
+            bottom: -100px;
+
+            right: -100px;
+
+        }
+
+
+        /* ===================================
+           MAIN 3D SCENE
+        =================================== */
+
+        .scene {
+
+            width: 1000px;
+
+            max-width: 92%;
+
+            height: 610px;
+
+            position: relative;
+
+            perspective: 1400px;
+
+        }
+
+
+        /* ===================================
+           3D CARD
+        =================================== */
+
+        .login-card {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 32px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.09),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,0.14);
+
+            backdrop-filter: blur(25px);
+
+            box-shadow:
+
+                0 50px 100px
+                rgba(0,0,0,0.65),
+
+                inset 0 1px 1px
+                rgba(255,255,255,0.15);
+
+            transform:
+                rotateX(2deg)
+                rotateY(-3deg);
+
+            transition: 0.5s;
+
+        }
+
+
+        .login-card:hover {
+
+            transform:
+                rotateX(0deg)
+                rotateY(0deg)
+                translateY(-4px);
+
+        }
+
+
+        /* ===================================
+           LEFT 3D AREA
+        =================================== */
+
+        .showcase {
+
+            width: 50%;
+
+            position: relative;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            perspective: 1000px;
+
+            border-right:
+                1px solid
+                rgba(255,255,255,0.08);
+
+        }
+
+
+        .showcase-content {
+
+            text-align: center;
+
+            z-index: 5;
+
+        }
+
+
+        .brand {
+
+            color: #e3b66d;
+
+            font-size: 31px;
+
+            letter-spacing: 5px;
+
+            font-weight: bold;
+
+        }
+
+
+        .brand-small {
+
+            color: #858080;
+
+            font-family: Arial, sans-serif;
+
+            letter-spacing: 7px;
+
+            font-size: 9px;
+
+            margin-top: 5px;
+
+        }
+
+
+        .welcome {
+
+            margin-top: 40px;
+
+            color: #aaa;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        /* ===================================
+           3D JEWEL BOX
+        =================================== */
+
+        .jewel-box {
+
+            width: 240px;
+
+            height: 170px;
+
+            position: relative;
+
+            margin: 55px auto 35px;
+
+            transform-style: preserve-3d;
+
+            transform:
+                rotateX(18deg)
+                rotateY(-25deg);
+
+            animation:
+                boxFloat 5s ease-in-out infinite;
+
+        }
+
+
+        @keyframes boxFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    rotateX(18deg)
+                    rotateY(-25deg)
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    rotateX(18deg)
+                    rotateY(-25deg)
+                    translateY(-18px);
+
+            }
+
+        }
+
+
+        .box-face {
+
+            position: absolute;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8f5d32,
+                    #d09a52
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,0.2);
+
+            box-shadow:
+                inset 0 0 30px
+                rgba(0,0,0,0.18);
+
+        }
+
+
+        .box-front {
+
+            width: 240px;
+
+            height: 170px;
+
+            transform:
+                translateZ(85px);
+
+        }
+
+
+        .box-back {
+
+            width: 240px;
+
+            height: 170px;
+
+            transform:
+                rotateY(180deg)
+                translateZ(85px);
+
+        }
+
+
+        .box-left {
+
+            width: 170px;
+
+            height: 170px;
+
+            transform:
+                rotateY(-90deg)
+                translateZ(120px);
+
+        }
+
+
+        .box-right {
+
+            width: 170px;
+
+            height: 170px;
+
+            transform:
+                rotateY(90deg)
+                translateZ(120px);
+
+        }
+
+
+        .box-top {
+
+            width: 240px;
+
+            height: 170px;
+
+            transform:
+                rotateX(90deg)
+                translateZ(85px);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d8a961,
+                    #9b6737
+                );
+
+        }
+
+
+        .box-logo {
+
+            position: absolute;
+
+            left: 50%;
+
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%)
+                translateZ(88px);
+
+            font-size: 50px;
+
+            font-style: italic;
+
+            color: #fff2d3;
+
+            text-shadow:
+                0 5px 15px
+                rgba(0,0,0,0.4);
+
+        }
+
+
+        .showcase-description {
+
+            color: #777;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* ===================================
+           LOGIN AREA
+        =================================== */
+
+        .login-area {
+
+            width: 50%;
+
+            padding: 70px;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+        }
+
+
+        .login-area h1 {
+
+            font-size: 42px;
+
+            font-weight: normal;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .login-area h1 span {
+
+            color: #dca45e;
+
+        }
+
+
+        .subtitle {
+
+            color: #888;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        /* ===================================
+           INPUT
+        =================================== */
+
+        .input {
+
+            position: relative;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .input input {
+
+            width: 100%;
+
+            padding: 17px 18px;
+
+            outline: none;
+
+            border-radius: 13px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            background:
+                rgba(0,0,0,0.22);
+
+            color: white;
+
+            font-family: Arial, sans-serif;
+
+            transition: 0.3s;
+
+        }
+
+
+        .input input::placeholder {
+
+            color: #666;
+
+        }
+
+
+        .input input:focus {
+
+            border-color: #d29a55;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(210,154,85,0.1);
+
+        }
+
+
+        .password-eye {
+
+            position: absolute;
+
+            right: 17px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            cursor: pointer;
+
+            color: #888;
+
+            font-family: Arial;
+
+        }
+
+
+        /* ===================================
+           OPTIONS
+        =================================== */
+
+        .options {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin: 5px 0 25px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            color: #888;
+
+        }
+
+
+        .remember {
+
+            display: flex;
+
+            gap: 8px;
+
+            align-items: center;
+
+        }
+
+
+        .remember input {
+
+            accent-color: #d29a55;
+
+        }
+
+
+        .forgot {
+
+            color: #d6a35e;
+
+            cursor: pointer;
+
+        }
+
+
+        /* ===================================
+           LOGIN BUTTON
+        =================================== */
+
+        .login-button {
+
+            width: 100%;
+
+            padding: 17px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #d9a45e,
+                    #a96935
+                );
+
+            color: #170e0a;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: bold;
+
+            letter-spacing: 0.5px;
+
+            box-shadow:
+                0 15px 35px
+                rgba(190,130,60,0.25);
+
+            transition: 0.3s;
+
+        }
+
+
+        .login-button:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 20px 40px
+                rgba(190,130,60,0.4);
+
+        }
+
+
+        /* ===================================
+           DIVIDER
+        =================================== */
+
+        .divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin: 23px 0;
+
+            color: #555;
+
+            font-family: Arial;
+
+            font-size: 10px;
+
+        }
+
+
+        .divider::before,
+        .divider::after {
+
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+        }
+
+
+        /* ===================================
+           GOOGLE
+        =================================== */
+
+        .google {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border-radius: 13px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            background:
+                rgba(255,255,255,0.04);
+
+            color: #ddd;
+
+            cursor: pointer;
+
+            font-family: Arial;
+
+            transition: 0.3s;
+
+        }
+
+
+        .google:hover {
+
+            background:
+                rgba(255,255,255,0.08);
+
+        }
+
+
+        /* ===================================
+           SIGN UP
+        =================================== */
+
+        .signup {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #777;
+
+            font-family: Arial;
+
+            font-size: 12px;
+
+        }
+
+
+        .signup span {
+
+            color: #dca45e;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ===================================
+           HOME BUTTON
+        =================================== */
+
+        .home-link {
+
+            position: absolute;
+
+            top: 25px;
+
+            left: 30px;
+
+            z-index: 10;
+
+            color: #888;
+
+            text-decoration: none;
+
+            font-family: Arial;
+
+            font-size: 12px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .home-link:hover {
+
+            color: #e1b16a;
+
+        }
+
+
+        /* ===================================
+           RESPONSIVE
+        =================================== */
+
+        @media(max-width: 800px) {
+
+            body {
+
+                overflow: auto;
+
+                padding: 30px 0;
+
+            }
+
+
+            .scene {
+
+                height: auto;
+
+            }
+
+
+            .login-card {
+
+                flex-direction: column;
+
+            }
+
+
+            .showcase,
+            .login-area {
+
+                width: 100%;
+
+            }
+
+
+            .showcase {
+
+                min-height: 400px;
+
+                border-right: none;
+
+                border-bottom:
+                    1px solid
+                    rgba(255,255,255,0.08);
+
+            }
+
+
+            .login-area {
+
+                padding: 40px 30px;
+
+            }
+
+
+            .jewel-box {
+
+                transform:
+                    scale(0.72)
+                    rotateX(18deg)
+                    rotateY(-25deg);
+
+                margin: 20px auto;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Background -->
+
+    <div class="light one"></div>
+
+    <div class="light two"></div>
+
+    <div class="background-ring"></div>
+
+
+
+    <div class="scene">
+
+
+        <!-- HOME -->
+
+       
+
+
+        <div class="login-card">
+
+
+            <!-- =================================
+                 LEFT SIDE
+            ================================= -->
+
+            <section class="showcase">
+
+
+                <div class="showcase-content">
+
+
+                    <div class="brand">
+                        SARITA
+                    </div>
+
+
+                    <div class="brand-small">
+                        SAREES
+                    </div>
+
+
+                    <div class="welcome">
+                        Welcome to elegance
+                    </div>
+
+
+
+                    <!-- 3D BOX -->
+
+                    <div class="jewel-box">
+
+
+                        <div
+                            class="box-face box-front"
+                        ></div>
+
+
+                        <div
+                            class="box-face box-back"
+                        ></div>
+
+
+                        <div
+                            class="box-face box-left"
+                        ></div>
+
+
+                        <div
+                            class="box-face box-right"
+                        ></div>
+
+
+                        <div
+                            class="box-face box-top"
+                        ></div>
+
+
+                        <div class="box-logo">
+                            S
+                        </div>
+
+
+                    </div>
+
+
+
+                    <p class="showcase-description">
+
+                        Discover timeless sarees,
+                        <br>
+                        crafted for beautiful moments.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================
+                 RIGHT SIDE
+            ================================= -->
+
+            <section class="login-area">
+
+
+                <h1>
+                    Sign <span>In.</span>
+                </h1>
+
+
+                <p class="subtitle">
+
+                    Enter your details to continue
+                    <br>
+                    your Sarita Sarees journey.
+
+                </p>
+
+
+
+                <form
+                    id="loginForm"
+                >
+
+
+                    <!-- EMAIL -->
+
+                    <div class="input">
+
+                        <input
+                            type="text"
+                            id="email"
+                            placeholder="Email or mobile number"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="input">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <span
+                            class="password-eye"
+                            id="eye"
+                        >
+                            👁
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="options">
+
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="remember"
+                            >
+
+                            Remember me
+
+                        </label>
+
+
+                        <span class="forgot">
+                            Forgot password?
+                        </span>
+
+
+                    </div>
+
+
+
+                    <!-- LOGIN -->
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+                        Continue →
+                    </button>
+
+
+                </form>
+
+
+
+                <div class="divider">
+                    OR
+                </div>
+
+
+
+                <button
+                    class="google"
+                    onclick="googleLogin()"
+                >
+                    Continue with Google
+                </button>
+
+
+
+                <div class="signup">
+
+                    New to Sarita Sarees?
+
+                    <span>
+                        Create an account
+                    </span>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+
+        /* =================================
+           SHOW / HIDE PASSWORD
+        ================================= */
+
+        const password =
+            document.getElementById("password");
+
+        const eye =
+            document.getElementById("eye");
+
+
+        eye.addEventListener(
+            "click",
+            function() {
+
+                if(
+                    password.type === "password"
+                ) {
+
+                    password.type = "text";
+
+                    eye.textContent = "🙈";
+
+                }
+
+                else {
+
+                    password.type = "password";
+
+                    eye.textContent = "👁";
+
+                }
+
+            }
+        );
+
+
+
+        /* =================================
+           LOGIN
+        ================================= */
+
+        const form =
+            document.getElementById(
+                "loginForm"
+            );
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+                const passwordValue =
+                    document
+                    .getElementById("password")
+                    .value;
+
+
+                if(
+                    email === "" ||
+                    passwordValue === ""
+                ) {
+
+                    alert(
+                        "Please fill in all fields."
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                   DEMO LOGIN
+
+                   This is NOT real authentication.
+                   We only save a temporary login state.
+                */
+
+                localStorage.setItem(
+                    "saritaLoggedIn",
+                    "true"
+                );
+
+
+                localStorage.setItem(
+                    "saritaUser",
+                    email
+                );
+
+
+                alert(
+                    "Welcome to Sarita Sarees!"
+                );
+
+
+                /*
+                   Send the customer
+                   back to homepage.
+                */
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+
+
+        /* =================================
+           GOOGLE BUTTON
+        ================================= */
+
+        function googleLogin() {
+
+            alert(
+                "Google authentication will be connected later."
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
